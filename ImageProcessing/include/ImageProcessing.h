@@ -1,9 +1,13 @@
 #ifndef IMAGEPROCESSING_H
 #define IMAGEPROCESSING_H
 
- static const int  _512by512_IMG_SIZE = 262144; // 512*512
- static const int BMP_COLOR_TABLE_SIZE = 1024;
- static const int BMP_HEADER_SIZE = 54;
+ static const int   _512by512_IMG_SIZE  = 262144; // 512*512
+ static const int   BMP_COLOR_TABLE_SIZE= 1024;
+ static const int   BMP_HEADER_SIZE     = 54;
+ static const int   MAX_COLOR           = 255;
+ static const int   MIN_COLOR           =  0;
+ static const int   WHITE               =  MAX_COLOR;
+ static const int   BLACK               =  MIN_COLOR;
 
 class ImageProcessing
 {
@@ -20,9 +24,13 @@ class ImageProcessing
                                  unsigned char * _outBuf
 
                                  );
+
         void readImage();
         void writeImage();
         void copyImgData(unsigned char *_srcBuf, unsigned char *_destBuf, int bufSize);
+        void binarizeImage(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int threshold);
+        void brigthnessUp(unsigned char *_inputImgData, unsigned char *_outImgData, int imgSize, int brightness);
+
         virtual ~ImageProcessing();
 
     protected:

@@ -15,6 +15,7 @@ ImageProcessing::ImageProcessing(
                                  unsigned char * _colorTable,
                                  unsigned char * _inBuf,
                                  unsigned char * _outBuf
+
                                  )
 {
     inImgName  = _inImgName;
@@ -27,6 +28,7 @@ ImageProcessing::ImageProcessing(
     inBuf      = _inBuf;
     outBuf     = _outBuf;
 }
+
 
 void ImageProcessing::readImage()
 {
@@ -79,7 +81,26 @@ void ImageProcessing ::copyImgData(unsigned char *_srcBuf, unsigned char *_destB
     }
 }
 
+void ImageProcessing::binarizeImage(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int threshold)
+{
+    for(int i=0;i<imgSize;i++)
+    {
+        _outImgData[i] =  (_inImgData[i] > threshold) ? WHITE :BLACK;
+    }
+}
+void ImageProcessing::brigthnessUp(unsigned char *_inputImgData, unsigned char *_outImgData, int imgSize, int brightness)
+{
+
+    for(int i =0;i<imgSize;i++)
+    {
+        int temp = _inputImgData[i]+ brightness;
+        _outImgData[i] =  (temp > MAX_COLOR)? MAX_COLOR :temp;
+    }
+}
+
 ImageProcessing::~ImageProcessing()
 {
     //dtor
 }
+
+

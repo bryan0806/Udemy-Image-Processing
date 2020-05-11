@@ -11,8 +11,8 @@ int main()
     unsigned char imgInBuffer[_512by512_IMG_SIZE];
     unsigned char imgOutBuffer[_512by512_IMG_SIZE];
 
-    const char imgName[] ="images/girlface.bmp";
-    const char newImgName[] ="images/girlface_copy.bmp";
+    const char imgName[] ="images/lena512.bmp";
+    const char newImgName[] ="images/lena_bright2.bmp";
 
     ImageProcessing *myImage  = new ImageProcessing(imgName,
                                                     newImgName,
@@ -26,11 +26,13 @@ int main()
                                                     );
 
      myImage->readImage();
-     myImage->copyImgData(imgInBuffer,imgOutBuffer,_512by512_IMG_SIZE);
+
+     myImage->brigthnessUp(imgInBuffer,imgOutBuffer,_512by512_IMG_SIZE,100);
      myImage->writeImage();
 
      cout<<"Success !"<<endl;
      cout<<"Image Height : "<<imgHeight<<endl;
      cout<<"Image Width  : "  <<imgWidth<<endl;
+
     return 0;
 }
