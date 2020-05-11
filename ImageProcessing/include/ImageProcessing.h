@@ -33,6 +33,8 @@ class ImageProcessing
         void brigthnessUp(unsigned char *_inputImgData, unsigned char *_outImgData, int imgSize, int brightness);
         void brigthnessDown(unsigned char *_inputImgData, unsigned char *_outImgData, int imgSize, int darkness);
         void computeHistogram(unsigned char * _imgData, int imgRows, int imgCols, float hist[]);
+        void computeHistogram2(unsigned char * _imgData, int imgRows, int imgCols, float hist[],const char *histFile);
+        void equalizeHistogram(unsigned char * _inputImgData, unsigned char * _outputImgData, int imgRows, int imgCols);
 
         virtual ~ImageProcessing();
 
