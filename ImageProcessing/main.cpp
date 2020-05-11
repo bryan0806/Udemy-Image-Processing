@@ -5,6 +5,8 @@ using namespace std;
 
 int main()
 {
+    float imgHiSt[NO_OF_GRAYLEVELS];
+
     int imgWidth, imgHeight, imgBitDepth;
     unsigned char imgHeader[BMP_HEADER_SIZE];
     unsigned char imgColorTable[BMP_COLOR_TABLE_SIZE];
@@ -12,7 +14,7 @@ int main()
     unsigned char imgOutBuffer[_512by512_IMG_SIZE];
 
     const char imgName[] ="images/lena512.bmp";
-    const char newImgName[] ="images/lena_bright2.bmp";
+    const char newImgName[] ="images/blank.bmp";
 
     ImageProcessing *myImage  = new ImageProcessing(imgName,
                                                     newImgName,
@@ -26,9 +28,8 @@ int main()
                                                     );
 
      myImage->readImage();
+     myImage->computeHistogram(imgInBuffer,imgHeight,imgWidth,imgHiSt);
 
-     myImage->brigthnessUp(imgInBuffer,imgOutBuffer,_512by512_IMG_SIZE,100);
-     myImage->writeImage();
 
      cout<<"Success !"<<endl;
      cout<<"Image Height : "<<imgHeight<<endl;

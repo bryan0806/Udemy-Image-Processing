@@ -98,6 +98,46 @@ void ImageProcessing::brigthnessUp(unsigned char *_inputImgData, unsigned char *
     }
 }
 
+void ImageProcessing::brigthnessDown(unsigned char *_inputImgData, unsigned char *_outImgData, int imgSize, int darkness)
+{
+     for(int i =0;i<imgSize;i++)
+     {
+         int temp = _inputImgData[i] - darkness;
+         _outImgData[i] = (temp<MIN_COLOR) ? MIN_COLOR :temp;
+     }
+}
+
+void ImageProcessing::computeHistogram(unsigned char * _imgData, int imgRows, int imgCols, float hist[])
+{
+    FILE *fptr;
+    fptr =fopen("image_hist.txt","w");
+
+    int x,y,i,j;
+    long int ihist[255],sum;
+    for(i =0;i<=255;i++)
+    {
+        ihist[i] =0;
+    }
+    sum =0;
+    for(y=0;y<imgRows;y++)
+    {
+        for(x=0;x<imgCols;x++)
+        {
+            j = *(_imgData+x+y*imgCols);
+            ihist[j] = ihist[j] +1;
+            sum = sum+1;
+        }
+
+    }
+    for(i=0;i<255;i++)
+        hist[i] =  (float)ihist[i]/(float)sum;
+  for(int i=0;i<255;i++)
+    {
+        fprintf(fptr,"\n%f",hist[i]);
+    }
+    fclose(fptr);
+}
+
 ImageProcessing::~ImageProcessing()
 {
     //dtor

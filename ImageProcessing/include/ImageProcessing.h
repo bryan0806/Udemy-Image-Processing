@@ -8,6 +8,7 @@
  static const int   MIN_COLOR           =  0;
  static const int   WHITE               =  MAX_COLOR;
  static const int   BLACK               =  MIN_COLOR;
+ static const int   NO_OF_GRAYLEVELS     = 255;
 
 class ImageProcessing
 {
@@ -30,6 +31,8 @@ class ImageProcessing
         void copyImgData(unsigned char *_srcBuf, unsigned char *_destBuf, int bufSize);
         void binarizeImage(unsigned char *_inImgData, unsigned char *_outImgData, int imgSize, int threshold);
         void brigthnessUp(unsigned char *_inputImgData, unsigned char *_outImgData, int imgSize, int brightness);
+        void brigthnessDown(unsigned char *_inputImgData, unsigned char *_outImgData, int imgSize, int darkness);
+        void computeHistogram(unsigned char * _imgData, int imgRows, int imgCols, float hist[]);
 
         virtual ~ImageProcessing();
 
