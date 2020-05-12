@@ -261,6 +261,30 @@ void  ImageProcessing::detectLine(unsigned char *_inputImgData, unsigned char *_
         }
     }
 }
+
+void ImageProcessing::setMask(int mskRows, int mskCols, const int mskData[])
+{
+    signed char * tmp;
+    int requiredSize;
+
+  myMask.Rows  = mskRows;
+  myMask.Cols  = mskCols;
+  requiredSize =  myMask.Rows * myMask.Cols;
+  myMask.Data =  (unsigned char *)malloc(requiredSize);
+
+  tmp = (signed char *)myMask.Data;
+
+  for(int i = 0;i<requiredSize;i++)
+  {
+      *tmp =  mskData[i];
+      ++tmp;
+
+  }
+
+}
+
+
+
 ImageProcessing::~ImageProcessing()
 {
     //dtor

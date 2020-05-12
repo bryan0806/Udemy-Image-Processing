@@ -13,8 +13,8 @@ int main()
     unsigned char imgInBuffer[_512by512_IMG_SIZE];
     unsigned char imgOutBuffer[_512by512_IMG_SIZE];
 
-    const char imgName[] ="images/houses.bmp";
-    const char newImgName[] ="images/houses_ln_Rdia.bmp";
+    const char imgName[] ="images/girlface.bmp";
+    const char newImgName[] ="images/girlface_prwt_hon.bmp";
 
     ImageProcessing *myImage  = new ImageProcessing(imgName,
                                                     newImgName,
@@ -30,9 +30,10 @@ int main()
 
 
      myImage->readImage();
-
-     myImage->detectLine(imgInBuffer,imgOutBuffer,imgWidth,imgHeight,LINE_DETECTOR_RDIA_MSK);
+     myImage->setMask(3,3,PREWITT_HOR);
+     myImage->Convolve2D(imgHeight,imgWidth,&myImage->myMask,imgInBuffer,imgOutBuffer);
      myImage->writeImage();
+
 
      cout<<"Success !"<<endl;
      cout<<"Image Height : "<<imgHeight<<endl;

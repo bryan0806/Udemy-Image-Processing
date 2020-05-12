@@ -40,6 +40,22 @@ static const int LINE_DETECTOR_LDIA_MSK[3][3] = {{2,-1,-1},
                                                   {2,-1,-1}
                                                  };
 
+/*Prewitt Operator - Vertical Edges*/
+/*
+   -1  0   1
+   -1  0   1
+   -1  0   1
+*/
+static const int PREWITT_VER[] ={-1,0,1,-1,0,1,-1,0,1};
+
+/*Prewitt Operator - Horizontal Edges*/
+/*
+   -1  -1  -1
+    0   0   0
+   -1   -1 -1
+*/
+static const int PREWITT_HOR[] ={-1,-1,-1,0,0,0,1,1,1};
+
 class ImageProcessing
 {
     public:
@@ -55,6 +71,7 @@ class ImageProcessing
                                  unsigned char * _outBuf
 
                                  );
+        Mask myMask;
 
         void readImage();
         void writeImage();
@@ -68,6 +85,7 @@ class ImageProcessing
         void getImageNegative(unsigned char *_inImgData, unsigned char * _outImgData,int imgWidth,int imgHeight);
         void Convolve2D(int imgRows, int imgCols, struct Mask *myMask, unsigned char *input_buf, unsigned char *output_buf);
         void  detectLine(unsigned char *_inputImgData, unsigned char *_outputImgData, int imgCols, int imgRows, const int MASK[][3]);
+        void setMask(int mskRows, int mskCols, const int mskData[]);
 
         virtual ~ImageProcessing();
 
