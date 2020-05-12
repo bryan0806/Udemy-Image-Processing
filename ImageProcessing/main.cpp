@@ -5,7 +5,9 @@ using namespace std;
 
 int main()
 {
-    float imgHiSt[NO_OF_GRAYLEVELS];
+    Mask lpmask;
+    unsigned char *tmp;
+    int i;
 
     int imgWidth, imgHeight, imgBitDepth;
     unsigned char imgHeader[BMP_HEADER_SIZE];
@@ -14,7 +16,7 @@ int main()
     unsigned char imgOutBuffer[_512by512_IMG_SIZE];
 
     const char imgName[] ="images/girlface.bmp";
-    const char newImgName[] ="images/girlface_neg.bmp";
+    const char newImgName[] ="images/girlface_conv.bmp";
 
     ImageProcessing *myImage  = new ImageProcessing(imgName,
                                                     newImgName,
@@ -27,9 +29,37 @@ int main()
                                                     &imgOutBuffer[0]
                                                     );
 
-     myImage->readImage();
-     myImage->getImageNegative(imgInBuffer,imgOutBuffer,imgWidth,imgHeight);
 
+     lpmask.Cols=5;
+     lpmask.Rows=5;
+     lpmask.Data= (unsigned char *)malloc(25);
+
+     /* -1 -1 -1 -1 -1
+        -1 -1 -1 -1 -1
+        -1 -1 24 -1 -1
+        -1 -1 -1 -1 -1
+        -1 -1 -1 -1 -1*/
+
+     tmp = lpmask.Data;
+     for (i=0;i<25;i++)
+     {
+         *tmp =-1;
+         //cout<< *tmp << " " <<endl;
+         ++tmp;
+     }
+
+     tmp = lpmask.Data+13;
+     *tmp=24;
+
+     //check mask
+     for(i=0;i<25;i++){
+        cout << "i=" << i << "value=" << (signed int)*(lpmask.Data+i) << endl;
+     }
+
+
+     myImage->readImage();
+
+     myImage->Convolve2D(imgHeight,imgWidth,&lpmask,imgInBuffer,imgOutBuffer);
      myImage->writeImage();
 
      cout<<"Success !"<<endl;

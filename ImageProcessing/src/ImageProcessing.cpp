@@ -210,6 +210,57 @@ void ImageProcessing::getImageNegative(unsigned char *_inImgData, unsigned char 
         }
     }
 }
+
+void ImageProcessing::Convolve2D(int imgRows, int imgCols, struct Mask *myMask, unsigned char *input_buf, unsigned char *output_buf)
+{
+    long i,j,m,n,idx,jdx;
+    int ms,im,val;
+    unsigned char *tmp;
+
+    //the outer summation loop
+    for(i =0;i<imgRows;++i)
+        for(j =0;j<imgCols;++j){
+            val =0;
+            for(m=0;m<myMask->Rows;++m)
+            for(n=0;n<myMask->Cols;++n){
+                ms = (signed char)*(myMask->Data+ m*myMask->Rows+n);
+                idx = i-m;
+                jdx = j-n;
+                if(idx>=0 && jdx >=0)
+                    im = *(input_buf+idx*imgRows+jdx);
+                val +=ms*im;
+        }
+            if(val >255) val =255;
+            if(val <0)val =0;
+            tmp =output_buf + i*imgRows +j;
+            *tmp =(unsigned char)val;
+
+    }
+
+}
+
+void  ImageProcessing::detectLine(unsigned char *_inputImgData, unsigned char *_outputImgData, int imgCols, int imgRows, const int MASK[][3])
+{
+
+    int x,y,i,j,sum;
+    for(y=1;y<=imgRows-1;y++)
+    {
+        for(x=1;x<=imgCols;x++)
+        {
+            sum =0;
+            for(i=-1;i<=1;i++)
+            {
+                for(j=-1;j<=1;j++)
+                {
+                    sum = sum + *(_inputImgData+x+i+(long)(y+j)*imgCols)*MASK[i+1][j+1];
+                }
+            }
+            if(sum >255) sum = 255;
+            if(sum<0)sum =0;
+            *(_outputImgData+x+(long)y*imgCols) =sum ;
+        }
+    }
+}
 ImageProcessing::~ImageProcessing()
 {
     //dtor
