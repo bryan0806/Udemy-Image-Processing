@@ -35,6 +35,7 @@ class ImageProcessing
         void computeHistogram(unsigned char * _imgData, int imgRows, int imgCols, float hist[]);
         void computeHistogram2(unsigned char * _imgData, int imgRows, int imgCols, float hist[],const char *histFile);
         void equalizeHistogram(unsigned char * _inputImgData, unsigned char * _outputImgData, int imgRows, int imgCols);
+        void getImageNegative(unsigned char *_inImgData, unsigned char * _outImgData,int imgWidth,int imgHeight);
 
         virtual ~ImageProcessing();
 

@@ -199,6 +199,17 @@ void ImageProcessing::equalizeHistogram(unsigned char * _inputImgData, unsigned 
     }
     computeHistogram2(&_outputImgData[0], imgRows,imgCols,&hist[0],finalHist);
 }
+
+void ImageProcessing::getImageNegative(unsigned char *_inImgData, unsigned char * _outImgData,int imgWidth,int imgHeight)
+{
+
+    for(int i =0;i<imgHeight;i++)
+    {
+        for(int j=0;j<imgWidth;j++){
+             _outImgData[i*imgWidth+j ]  = 255 - _inImgData[i*imgWidth+j];
+        }
+    }
+}
 ImageProcessing::~ImageProcessing()
 {
     //dtor

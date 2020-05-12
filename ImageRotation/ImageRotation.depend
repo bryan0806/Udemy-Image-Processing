@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1589250835 source:d:\git_workspace\udemy-image-processing\imagerotation\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+

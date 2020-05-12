@@ -13,8 +13,8 @@ int main()
     unsigned char imgInBuffer[_512by512_IMG_SIZE];
     unsigned char imgOutBuffer[_512by512_IMG_SIZE];
 
-    const char imgName[] ="images/lena512.bmp";
-    const char newImgName[] ="images/lena_eqz.bmp";
+    const char imgName[] ="images/girlface.bmp";
+    const char newImgName[] ="images/girlface_neg.bmp";
 
     ImageProcessing *myImage  = new ImageProcessing(imgName,
                                                     newImgName,
@@ -28,7 +28,8 @@ int main()
                                                     );
 
      myImage->readImage();
-     myImage->equalizeHistogram(imgInBuffer,imgOutBuffer,imgHeight,imgWidth);
+     myImage->getImageNegative(imgInBuffer,imgOutBuffer,imgWidth,imgHeight);
+
      myImage->writeImage();
 
      cout<<"Success !"<<endl;
