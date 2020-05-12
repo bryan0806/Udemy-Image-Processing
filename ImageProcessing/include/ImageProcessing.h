@@ -56,6 +56,18 @@ static const int PREWITT_VER[] ={-1,0,1,-1,0,1,-1,0,1};
 */
 static const int PREWITT_HOR[] ={-1,-1,-1,0,0,0,1,1,1};
 
+/*Sobel Operator -  Vertical Edges*/
+/* -1  0  1
+   -2  0  2
+   -1  0  1*/
+ static const int SOBEL_VER[] {-1,0,1,-2,0,2,-1,0,1};
+/*Sobele Operator -  Horizontal Edges*/
+/*  -1  -2  -1
+     0   0   0
+     1   2   1*/
+
+ static const int SOBEL_HOR[] ={-1,-2,-1,0,0,0,1,2,1};
+
 class ImageProcessing
 {
     public:
