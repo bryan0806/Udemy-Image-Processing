@@ -13,7 +13,7 @@ int main()
     unsigned char imgOutBuffer[_512by512_IMG_SIZE];
 
     const char imgName[] ="images/lena512.bmp";
-    const char newImgName[] ="images/lena_ronson_wst.bmp";
+    const char newImgName[] ="images/lena_kirsch_wst.bmp";
 
     ImageProcessing *myImage  = new ImageProcessing(imgName,
                                                     newImgName,
@@ -29,7 +29,7 @@ int main()
 
 
      myImage->readImage();
-     myImage->setMask(3,3,ROBINSON_WST);
+     myImage->setMask(3,3,KIRSCH_WST);
      myImage->Convolve2D(imgHeight,imgWidth,&myImage->myMask,imgInBuffer,imgOutBuffer);
      myImage->writeImage();
 

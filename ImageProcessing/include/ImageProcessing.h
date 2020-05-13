@@ -75,6 +75,23 @@ static const int PREWITT_HOR[] ={-1,-1,-1,0,0,0,1,1,1};
  static const int ROBINSON_WST[] ={1,2,1,0,0,0,-1,-2,-1};
  static const int ROBINSON_EST[] ={-1,-2,-1,0,0,0,1,2,1};
 
+ /*Roberts Mask  Gx*/
+ /* 1 0
+   0 -1*/
+static const int ROBERTS_MSK_GX [] ={1,0,0,-1};
+
+   /*Roberts Mask Gy*/
+   /*0  1
+    -1  0*/
+static const int ROBERTS_MSK_GY[] ={0,1,-1,0};
+
+/*Kirsch Operator*/
+
+static const int KIRSCH_NTH[]={5,5,5,-3,0,-3,-3,-3,-3};
+static const int KIRSCH_STH[]={-3,-3,-3,-3,0,-3,5,5,5};
+static const int KIRSCH_EST[]={-3,-3,5,-3,0,5,-3,-3,5};
+static const int KIRSCH_WST[]={5,-3,-3,5,0,-3,5,-3,-3};
+
 class ImageProcessing
 {
     public:

@@ -1,11 +1,8 @@
 # depslib dependency file v1.0
-1589275116 source:d:\git_workspace\udemy-image-processing\imageprocessing\src\imageprocessing.cpp
+1589333943 source:d:\git_workspace\udemy-image-processing\imageprocessing\src\imageprocessing.cpp
 	"ImageProcessing.h"
-	<stdio.h>
-	<stdlib.h>
-	<iostream>
 
-1589275979 d:\git_workspace\udemy-image-processing\imageprocessing\include\imageprocessing.h
+1589335351 d:\git_workspace\udemy-image-processing\imageprocessing\include\imageprocessing.h
 	<stdio.h>
 	<stdlib.h>
 	<iostream>
