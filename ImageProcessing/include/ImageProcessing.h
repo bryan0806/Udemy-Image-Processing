@@ -92,6 +92,11 @@ static const int KIRSCH_STH[]={-3,-3,-3,-3,0,-3,5,5,5};
 static const int KIRSCH_EST[]={-3,-3,5,-3,0,5,-3,-3,5};
 static const int KIRSCH_WST[]={5,-3,-3,5,0,-3,5,-3,-3};
 
+
+/*Laplacian Operator*/
+static const int LAPLACE_NEG[] ={0,-1,0,-1,4,-1,0,-1,0};
+static const int LAPLACE_POS[] ={0,1,0,1,-4,1,0,1,0};
+
 class ImageProcessing
 {
     public:
