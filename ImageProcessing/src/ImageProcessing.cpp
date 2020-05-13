@@ -381,6 +381,35 @@ void ImageProcessing::medianFilter(unsigned char *_inputImgData, unsigned char *
    }
 
 }
+
+void ImageProcessing::minimumFilter(unsigned char *_inputImgData, unsigned char *_outputImgData, int imgCols, int imgRows)
+{
+    int x, y,i,j,smin,n,a[11][11];
+    n =5;
+    for(y =n/2;y<imgRows-n/2;y++)
+    {
+        for(x =n/2;x<imgCols-n/2;x++)
+        {
+            smin =255;
+            for(j=-n/2;j<=n/2;j++)
+                for(i=-n/2;i<=n/2;i++)
+            {
+                a[i+n/2][j+n/2] =  *(_inputImgData+x+i+(long)(y+j)*imgCols);
+
+            }
+            for(j=0;j<=n-1;j++)
+            {
+                for(i=0;i<=n-1;i++)
+                {
+                    if(a[i][j]<smin)smin = a[i][j];
+                }
+            }
+            *(_outputImgData+x+(long)y*imgCols) = smin;
+        }
+    }
+
+
+}
 ImageProcessing::~ImageProcessing()
 {
     //dtor
