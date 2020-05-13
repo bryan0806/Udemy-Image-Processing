@@ -348,6 +348,39 @@ void ImageProcessing::maximumFilter(unsigned char *_inputImgData, unsigned char 
 
 
 }
+void ImageProcessing::medianFilter(unsigned char *_inputImgData, unsigned char *_outputImgData, int imgCols, int imgRows)
+{
+   int x, y,i,j,z;
+   int n, ar[121],a;
+   n=7;
+
+   for(y=n/2;y<imgRows-n/2;y++)
+        for(x =n/2;x<imgCols-n/2;x++)
+   {
+       z =0;
+       for(j=-n/2;j<=n/2;j++)
+        for(i=-n/2;i<=n/2;i++)
+       {
+           ar[z] =  *(_inputImgData+x+i+(long)(y+j)*imgCols);
+           z++;
+       }
+
+       for(j=1;j<=n*n-1;j++)
+       {
+           a = ar[j];
+           i=j-1;
+           while(i>=0&&ar[i] >a)
+           {
+
+               ar[i+1] =  ar[i];
+               i =i-1;
+           }
+           ar[i+1] = a;
+       }
+       *(_outputImgData+x+(long)y*imgCols) =  ar[n*n/2];
+   }
+
+}
 ImageProcessing::~ImageProcessing()
 {
     //dtor
