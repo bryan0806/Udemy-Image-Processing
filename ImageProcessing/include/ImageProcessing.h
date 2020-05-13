@@ -68,6 +68,13 @@ static const int PREWITT_HOR[] ={-1,-1,-1,0,0,0,1,1,1};
 
  static const int SOBEL_HOR[] ={-1,-2,-1,0,0,0,1,2,1};
 
+ //Robinson Operator
+
+ static const int ROBINSON_NTH[] ={-1,0,1,-2,0,2,-1,0,1};
+ static const int ROBINSON_STH[] ={1,0,-1,2,0,-2,1,0,-1};
+ static const int ROBINSON_WST[] ={1,2,1,0,0,0,-1,-2,-1};
+ static const int ROBINSON_EST[] ={-1,-2,-1,0,0,0,1,2,1};
+
 class ImageProcessing
 {
     public:
