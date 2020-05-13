@@ -317,7 +317,37 @@ void ImageProcessing::saltAndPepper(unsigned char *_inputImgData, int imgCols, i
 
 
 }
+void ImageProcessing::maximumFilter(unsigned char *_inputImgData, unsigned char *_outputImgData, int imgCols,int imgRows)
+{
+    int x,y,i,j,smax,n;
+    int a[11][11];
+    n =3;
+    n =3;
+   for(y = n/2; y<imgCols-n/2;y++)
+   {
+       for(x = n/2;x<imgCols-n/2;x++)
+       {
+           smax =0;
+           for(j=-n/2;j<=n/2;j++)
+           for(i=-n/2;i<=n/2;i++){
+            a[i+n/2][j+n/2] = *(_inputImgData+x+i+(long)(y+j)*imgCols);
+           }
+           for(j=0;j<=n-1;j++)
+           {
+               for(i =0;i<=n-1;i++)
+               {
 
+                   if(a[i][j] > smax)
+                    smax = a[i][j];
+               }
+           }
+           *(_outputImgData+x+(long)y*imgCols) = smax;
+       }
+
+   }
+
+
+}
 ImageProcessing::~ImageProcessing()
 {
     //dtor
