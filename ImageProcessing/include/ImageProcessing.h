@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <math.h>
 
  static const int   _512by512_IMG_SIZE  = 262144; // 512*512
  static const int   BMP_COLOR_TABLE_SIZE= 1024;
@@ -127,6 +128,8 @@ class ImageProcessing
         void Convolve2D(int imgRows, int imgCols, struct Mask *myMask, unsigned char *input_buf, unsigned char *output_buf);
         void  detectLine(unsigned char *_inputImgData, unsigned char *_outputImgData, int imgCols, int imgRows, const int MASK[][3]);
         void setMask(int mskRows, int mskCols, const int mskData[]);
+        void generateGaussNoise(unsigned char*_inputImgData, int imgCols, int imgRows, float var, float mean);
+        void saltAndPepper(unsigned char *_inputImgData, int imgCols, int imgRows, float prob);
 
         virtual ~ImageProcessing();
 

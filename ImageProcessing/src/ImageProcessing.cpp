@@ -281,7 +281,42 @@ void ImageProcessing::setMask(int mskRows, int mskCols, const int mskData[])
 
 }
 
+void ImageProcessing::generateGaussNoise(unsigned char*_inputImgData, int imgCols, int imgRows, float var, float mean)
+{
+    int x,y;
+    float theta,noise;
+    for(y =0;y<imgRows;y++)
+        for(x=0;x<imgCols;x++)
+    {
+        noise  = sqrt(-2*var*log(1.0-(float)rand()/32767.1));
+        theta  =  (float)rand()* 1.9175345e-4 - 3.14159265;
+        noise = noise * cos(theta);
+        noise =  noise + mean;
+        if(noise > 255) noise = 255;
+        if(noise< 0) noise =0;
+        *(_inputImgData+x+(long)y*imgCols) = (unsigned char)(noise +0.5);
+    }
+}
 
+void ImageProcessing::saltAndPepper(unsigned char *_inputImgData, int imgCols, int imgRows, float prob)
+{
+    int x,y,data1,data2,data;
+    data = (int)(prob*32768/2);
+    data1 = data +16384;
+    data2 =  16384 - data;
+
+    for(y =0;y<imgRows;y++)
+        for(x=0;x<imgCols;x++)
+    {
+          data = rand();
+         if(data >= 16384 && data< data1)
+            *(_inputImgData+x+(long)y*imgCols) =0;
+         if(data>=data2&& data<16384)
+            *(_inputImgData+x+(long)y*imgCols) =255;
+    }
+
+
+}
 
 ImageProcessing::~ImageProcessing()
 {
