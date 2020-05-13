@@ -98,6 +98,13 @@ static const int KIRSCH_WST[]={5,-3,-3,5,0,-3,5,-3,-3};
 static const int LAPLACE_NEG[] ={0,-1,0,-1,4,-1,0,-1,0};
 static const int LAPLACE_POS[] ={0,1,0,1,-4,1,0,1,0};
 
+
+//3x3 sharpener
+/*  -1  -1  -1
+    -1   9   -1
+    -1   -1   -1*/
+static const int HP_3X3[] ={-1,-1,-1,-1,9,-1,-1,-1,-1};
+
 class ImageProcessing
 {
     public:
@@ -130,6 +137,9 @@ class ImageProcessing
         void setMask(int mskRows, int mskCols, const int mskData[]);
         void generateGaussNoise(unsigned char*_inputImgData, int imgCols, int imgRows, float var, float mean);
         void saltAndPepper(unsigned char *_inputImgData, int imgCols, int imgRows, float prob);
+        void maximumFilter(unsigned char *_inputImgData, unsigned char *_outputImgData, int imgCols,int imgRows);
+        void medianFilter(unsigned char *_inputImgData, unsigned char *_outputImgData, int imgCols, int imgRows);
+        void minimumFilter(unsigned char *_inputImgData, unsigned char *_outputImgData, int imgCols, int imgRows);
 
         virtual ~ImageProcessing();
 

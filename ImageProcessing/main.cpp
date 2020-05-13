@@ -12,8 +12,8 @@ int main()
     unsigned char imgInBuffer[_512by512_IMG_SIZE];
     unsigned char imgOutBuffer[_512by512_IMG_SIZE];
 
-    const char imgName[] ="images/lena512.bmp";
-    const char newImgName[] ="images/lena_saltpepper.bmp";
+    const char imgName[] ="images/girlface.bmp";
+    const char newImgName[] ="images/girface_hp_filt.bmp";
 
     ImageProcessing *myImage  = new ImageProcessing(imgName,
                                                     newImgName,
@@ -23,13 +23,14 @@ int main()
                                                     &imgHeader[0],
                                                     &imgColorTable[0],
                                                     &imgInBuffer[0],
-                                                    &imgInBuffer[0]   // Note : The result is put back into the input buffer
+                                                    &imgOutBuffer[0]
                                                     );
 
 
 
      myImage->readImage();
-     myImage->saltAndPepper(imgInBuffer,imgWidth,imgHeight,0.1);
+     myImage->setMask(3,3,HP_3X3);
+     myImage->Convolve2D(imgHeight,imgWidth,&myImage->myMask,imgInBuffer,imgOutBuffer);
      myImage->writeImage();
 
 
