@@ -12,8 +12,8 @@ int main()
     unsigned char imgInBuffer[_512by512_IMG_SIZE];
     unsigned char imgOutBuffer[_512by512_IMG_SIZE];
 
-    const char imgName[] ="images/lighthouse.bmp";
-    const char newImgName[] ="images/lighthouse_laplace_pos.bmp";
+    const char imgName[] ="images/lena512.bmp";
+    const char newImgName[] ="images/lena_roberts_gy.bmp";
 
     ImageProcessing *myImage  = new ImageProcessing(imgName,
                                                     newImgName,
@@ -29,7 +29,7 @@ int main()
 
 
      myImage->readImage();
-     myImage->setMask(3,3,LAPLACE_POS);
+     myImage->setMask(2,2,ROBERTS_MSK_GY);
      myImage->Convolve2D(imgHeight,imgWidth,&myImage->myMask,imgInBuffer,imgOutBuffer);
      myImage->writeImage();
 
